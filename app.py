@@ -1,7 +1,8 @@
 import streamlit as st
 from counsellor_agent import generate_response
-from groq import Groq
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+#from groq import Groq
+#client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 st.set_page_config(page_title="Family Counsellor", layout="centered")
 st.title("💬 AI Family Counsellor")
 
