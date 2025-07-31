@@ -1,9 +1,16 @@
-# counsellor_agent.py
+
+
+import os
 from groq import Groq
 
-#client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-#client = Groq(api_key="YOUR_GROQ_API_KEY")
-client = Groq(api_key=os.getenv("GROQ_API_KEY")) 
+# ✅ Check if API key is loaded
+api_key = os.getenv("GROQ_API_KEY")
+if not api_key:
+    raise ValueError("❌ GROQ_API_KEY not found! Make sure you added it in Streamlit secrets or environment variables.")
+
+print("✅ Groq API Key found (starts with):", api_key[:5] + "*****")
+
+client = Groq(api_key=api_key)
 
 def generate_response(user_question):
     """
@@ -44,24 +51,30 @@ def generate_response(user_question):
     """
 
     prompt = f"""
-    You are a kind and empathetic family counsellor.
+You are a compassionate and experienced family counsellor.
+A family is facing the following conflict:
+{family_conflict_text}
 
-    Below is the family conflict description:
-    {family_conflict_text}
+The user asked: "{user_question}"
 
-    The user has this question: "{user_question}"
+Give practical, empathetic, and step-by-step advice to help this family.
+"""
 
-    Give practical advice in 4-6 sentences with a warm, understanding tone.
-    """
+    try:
+        response = client.chat.completions.create(
+            model="llama3-8b-8192",
+            messages=[
+                {"role": "system", "content": "You are a professional family counsellor."},
+                {"role": "user", "content": prompt},
+            ],
+        )
 
-    response = client.chat.completions.create(
-        model="llama3-70b-8192",
-        messages=[
-            {"role": "system", "content": "You are a compassionate family counsellor."},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.7,
-        max_tokens=400,
-    )
+        return response.choices[0].message["content"]
 
-    return response.choices[0].message["content"]
+    except Exception as e:
+        return f"❌ LLM Error: {str(e)}"
+
+
+
+
+
