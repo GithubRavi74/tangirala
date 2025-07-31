@@ -1,9 +1,6 @@
-streamlit
 pandas
-joblib
-scikit-learn
+numpy
 matplotlib
 seaborn
-xgboost
-shap
-ipython
+streamlit
+groq
