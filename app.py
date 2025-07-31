@@ -20,7 +20,7 @@ for sender, msg in st.session_state.chat_history:
             st.markdown(msg)
 
 # ✅ Input box at bottom
-user_input = st.chat_input("Type your question for the counsellor regarding Shankar Ravi Issue...")
+user_input = st.chat_input("Ask counsellor regarding Shankar Ravi Issue...")
 
 # ✅ Clear Chat Button at top
 if st.button("🗑️ Clear Chat"):
