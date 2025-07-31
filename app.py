@@ -4,7 +4,7 @@ from counsellor_agent import generate_response
 #from groq import Groq
 #client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 st.set_page_config(page_title="Family Counsellor", layout="centered")
-st.title("💬 Tangirala AI Family Counsellor")
+st.title("💬 Tangirala's AI Family Counsellor")
 
 # ✅ Initialize Chat History
 if "chat_history" not in st.session_state:
