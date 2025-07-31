@@ -70,7 +70,15 @@ Give practical, empathetic, and step-by-step advice to help this family.
         )
 
        # return response.choices[0].message["content"] #in the latest Groq SDK, the returned message is an object, not a dictionary so this code commented
-        response.choices[0].message.content
+        #response.choices[0].message.content
+
+        print(response)  # 👈 Add this to debug
+
+        if response and response.choices:
+            return response.choices[0].message.content.strip()
+
+        return "⚠️ No response received from the LLM."
+
     except Exception as e:
         return f"❌ LLM Error: {str(e)}"
 
