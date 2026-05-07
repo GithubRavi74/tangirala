@@ -57,7 +57,7 @@ A family is facing the following conflict:
 
 The user asked: "{user_question}"
 
-Give practical, empathetic, and step-by-step advice to help this family.
+Give practical, and empathetic advice in just few straight forward blunt lines, not big paragraphs, to help this family.
 """
 
     try:
